@@ -1,0 +1,55 @@
+.avscroll {
+  position: fixed;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: fit-content;
+}
+
+.scrollbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.scrollbar__element {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 4px;
+  height: 80px;
+  width: 10px;
+  border-radius: 10px;
+
+  background: rgba(20, 20, 20, 0.4);
+  transform: translateY(0);
+  z-index: 9;
+  cursor: pointer;
+}
+
+.scrollbar__element:active {
+  background: rgba(120, 120, 120, 0.4);
+  cursor: grabbing;
+}
+
+.av-c {
+  display: flex;
+  align-items: flex-start;
+}
+
+.avcontent {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+  align-items: flex-start;
+  transform: translateZ(0);
+}
+
+body .avs {
+  overflow: hidden;
+}

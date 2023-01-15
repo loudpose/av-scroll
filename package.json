@@ -1,0 +1,21 @@
+{
+  "name": "av-scroll",
+  "version": "0.0.1",
+  "description": "Smooth scrolling paired with horizontal scroll.",
+  "main": "js/AvScroll.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "scroll-hijacking",
+    "smooth",
+    "scroll",
+    "lerp"
+  ],
+  "author": "Averyano",
+  "license": "MIT",
+  "dependencies": {
+    "normalize-wheel": "^1.0.1",
+    "prefix": "^1.0.0"
+  }
+}
