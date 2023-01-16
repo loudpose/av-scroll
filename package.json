@@ -1,6 +1,6 @@
 {
   "name": "av-scroll",
-  "version": "0.0.1",
+  "version": "0.0.1-a",
   "description": "Smooth scrolling paired with horizontal scroll.",
   "main": "js/AvScroll.js",
   "scripts": {
