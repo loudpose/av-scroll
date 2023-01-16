@@ -166,6 +166,7 @@ export default class AvScroll {
     element.parentElement.style[this.transformPrefix] = 'translateZ(0)';
 
     const parentContainer = document.createElement('div');
+    parentContainer.classList.add('avcontent');
 
     insertAfter(element, parentContainer);
     parentContainer.append(element);
