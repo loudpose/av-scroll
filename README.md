@@ -1,10 +1,10 @@
-# AV scroll
+# av-scroll
 
 Smooth scrolling paired with horizontal scroll.
 
 ## Overview
 
-> ALPHA version ⚠️ Still In Development: works on mobile, works on desktop. Don't try to rescale from mobile to desktop or vice-versa.
+> ⚠️ Still In Development. Alpha version. Use responsibly.
 
 ```sh
 npm install av-scroll
@@ -14,13 +14,17 @@ npm install av-scroll
 
 #### CSS
 
-Add the base styles to your CSS file.
-
-[`avscroll.css`](avscroll.css)
+Add the following CSS to your website [`avscroll.css`](https://github.com/loudpose/av-scroll/blob/main/css/avscroll.css)
 
 #### JS
 
-When calling new AvScroll, you have to add an object that contains: elements.wrapper, lerp, links. An example can be found below. All other methods are optional.
+When calling new AvScroll, you have to add {} that contains:
+
+- elements.wrapper
+- lerp
+- links
+
+An example can be found below. All other methods are optional.
 
 ```
 import AvScroll from 'AvScroll';
