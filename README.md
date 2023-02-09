@@ -4,7 +4,7 @@ Smooth scrolling paired with horizontal scroll.
 
 ## Overview
 
-> ⚠️ In Development: works on mobile, works on desktop. The transition from desktop to mobile is not working properly (if you rescale your screen past the breakpoint)
+> ALPHA version ⚠️ Still In Development: works on mobile, works on desktop. Don't try to rescale from mobile to desktop or vice-versa.
 
 ```sh
 npm install av-scroll
@@ -41,22 +41,24 @@ new AvScroll({
 
 ## Adding Horizontal Scrolling
 
-First, you need to create your horizontal section, and add content in there. Make sure that the section is wide enough. Twice the window.innerWidth should work fine.
+First, you need to create your horizontal section, and add content to it. Make sure that the section is wide enough.
 
-Also, make sure that there's some spacing between two horizontal sections. Adding two horizontal sections in a row might cause bugs, but you can experiment with it. Lower the threshold to trigger it later. Threshold of 1 means that it will put the section in Focus a viewport before you actually reach it. If you set threshold to 0.5, it wil put it in Focus at 50% of viewport and so on.
+Make sure that there's some spacing between two horizontal sections. Adding two horizontal sections in a row might cause bugs, but you can experiment with it.
+
+Use the threshold to trigger adjust the time section gets inFocus. Threshold of 1 is your entire viewport, 0.5 half of the viewport. Like in the intersectionObserver.
 
 ### There are two options to add horizontal scroll.
 
 #### 1. On initialization
 
-Simply paste the horizontal object like this (you can use querySelector, or just strings of your class)
+Simply paste the horizontal object like in the example below:
 
 ```
 new AvScroll({
   elements: {
     wrapper: document.querySelector('.page__container');,
   },
-	horizontal: ['.gallery', '.gallery2'],
+  horizontal: ['.gallery', '.gallery2'],
   lerp: {
     default: 0.1,
     modified: 0.04,
@@ -65,16 +67,19 @@ new AvScroll({
     default: true,
   },
 });
+
+You can add strings '.gallery' or paste already selected div (with document.querySelector or whatever)
+
 ```
 
 #### 2. Via function
 
-Call the addHorizontal() functions on the AvScroll instance. It will recalculate the total height and everything automatically.
+Call the addHorizontal() function on the AvScroll instance. It will add instance. This method there in case you want to make this dynamic. It will recalculate the total height and everything automatically.
 
 ```
 const avScroll = new AvScroll({...});
 
-avScroll.addHorizontal('.gallery);
+avScroll.addHorizontal('.gallery');
 
 ```
 
@@ -82,22 +87,21 @@ avScroll.addHorizontal('.gallery);
 
 ### debug mode
 
-Enables debugging and console logs. Could be useful if it's not working properly.
+Enables debug window where scroll progress, inFocus, breakpoints, and other features can be tracked. Enabling debug mode, also enables the console log.
 
 ```
 const avScroll = new AvScroll({
-	elements: {
+  elements: {
     wrapper: document.querySelector('.page__container');,
-  },
-	debug: true,
-	...
+  debug: true,
+  ...
 });
 
 ```
 
 ### lerp
 
-The amount of linear interpolation. The smaller the value, the smoother it scrolls. The default value is used for scrolling. The modified value is used when clicking on links.
+The amount of linear interpolation. The smaller the value, the smoother it scrolls.
 
 ```
 const avScroll = new AvScroll({
@@ -111,54 +115,58 @@ const avScroll = new AvScroll({
 	...
 });
 
+default - used on scroll
+modified - use when clicking links
+
 ```
 
 ### links
 
-Which links does the scroll need to process. By default (default: true), adds ALL 'a' tag. You can specify an array of links
+If default: true - adds ALL 'a' tag elements on your entire website.
+If you want to control what gets selected, you can specify an array of links instead.
 
 ```
 const avScroll = new AvScroll({
-	elements: {
+  elements: {
     wrapper: document.querySelector('.page__container');,
   },
-	links: {
+  links: {
     // default: true, // default value
     default: [
-			document.querySelectorAll('.vgallery a')[0],
-			document.getElementById('link2hor'),
+      document.querySelectorAll('.vgallery a')[0],
+      document.getElementById('link2hor'),
       document.getElementById('link2last'),
     ],
   },
-	...
+  ...
 });
 
 ```
 
 ### mobile breakpoints
 
-I suggest disabling the scroller on mobile, otherwise, it will cause lag on weak devices. You can do that by specifying the breakpoint (by default set to 768px)
+I suggest disabling the scroller on mobile, otherwise, it will cause lag on weak devices. You can do that by specifying the breakpoint. Default breakpoint is set to 768px.
+
+To keep smooth scroll on mobile, set the breakpoint to 0.
+
+> ALPHA 0.0.2-a ⚠️ as of now, rescaling the window in the browser from desktop to mobile can cause some issues. Either keep breakpoint at 0, or hope that your site visitor won't begin rescaling it weirdly.
 
 ```
 const avScroll = new AvScroll({
-	elements: {
+  elements: {
     wrapper: document.querySelector('.page__container');,
   },
-	mobile: {
-		breakpoint: 768,
-	},
-	...
+  mobile: {
+    breakpoint: 768,
+  },
+  ...
 });
 
-avScroll.addHorizontal('.gallery);
-
 ```
 
-### Default values and all commands
+### Examples for all commands
 
 ```
-import AvScroll from './av-scroll/AvScroll';
-
 new AvScroll({
   elements: {
     wrapper: document.querySelector('.content__wrapper'),
@@ -189,29 +197,7 @@ new AvScroll({
 
 ### GSAP ScrollerProxy
 
-If you add your ScrollTrigger instances before adding avScroll, they won't work. Always put your tweens after avScroll.
-
-The scrollProxy is already added to the package and is done automatically, meaning that it works with GSAP Scroll Trigger out of the box.
-
-### GSAP ScrollTrigger example
-
-Creates new timeline. Moves element 200 by Y axis and sets opacity to 1. Scrub is high to keep it smooth.
-
-```
-this.timeline = GSAP.timeline();
-
-this.timeline.from(this.verticalSection, {
-	scrollTrigger: {
-		scroller: this.pageContainer, //locomotive-scroll
-		trigger: this.verticalSection,
-		// markers: true,
-		scrub: 5,
-	},
-	y: 200,
-	autoAlpha: 0,
-	ease: 'ease.out expo',
-});
-```
+The scrollProxy is already added to the package and is done automatically, meaning that it works with GSAP Scroll Trigger out of the box. Just make sure to put avScroll before any GSAP tweens.
 
 ## Update History
 
