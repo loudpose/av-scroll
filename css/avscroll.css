@@ -50,6 +50,21 @@
   transform: translateZ(0);
 }
 
-body .avs {
+.avdebug {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: -0.18rem;
+  position: fixed;
+  left: 3%;
+  top: 1.5%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 2rem;
+  z-index: 999;
+  background: hsla(200deg, 100%, 20%, 0.25);
+}
+
+/* body */
+.avs {
   overflow: hidden;
 }

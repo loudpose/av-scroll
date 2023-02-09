@@ -1,6 +1,6 @@
 {
   "name": "av-scroll",
-  "version": "0.0.1-a",
+  "version": "0.0.2-a",
   "description": "Smooth scrolling paired with horizontal scroll.",
   "main": "js/AvScroll.js",
   "scripts": {
@@ -15,7 +15,10 @@
   "author": "Averyano",
   "license": "MIT",
   "dependencies": {
+    "gsap": "^3.11.4",
+    "lodash": "^4.17.21",
     "normalize-wheel": "^1.0.1",
-    "prefix": "^1.0.0"
+    "prefix": "^1.0.0",
+    "uuid": "^9.0.0"
   }
 }

@@ -1,5 +1,8 @@
+import { v4 } from 'uuid';
+
 export default class HorizontalInstance {
   constructor(element, bounds) {
+    this.id = v4().slice(0, 6);
     this.element = element;
     this.bounds = bounds;
     this.width = this.bounds.width;
